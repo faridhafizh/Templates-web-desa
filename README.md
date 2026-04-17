@@ -8,6 +8,13 @@
 
 **[View Live Preview](https://desapagarbesi.net)**
 
+## Features Update & Visual Design Improvements
+
+* **Updated UI/UX Visual Design:** Revamped the color scheme by changing the primary color to a modern, nature-friendly green (`#28a745`), updated typography, and introduced subtle drop shadows, border-radius adjustments, and sleek hover effects on cards and buttons.
+* **Scroll Animations:** Integrated the [AOS (Animate On Scroll)](https://michalsnik.github.io/aos/) library to add smooth entry animations to all content sections, creating a more dynamic user experience.
+* **Statistik Desa (Village Statistics):** Added a new statistics section that features an animated counter to display population, families, area, and administrative divisions.
+* **Peta Lokasi (Location Map):** Integrated a responsive Google Maps iframe to help visitors locate the village easily.
+
 ## About
 
 Desaku dibangun dengan berbasiskan tema Agency dari Start Bootstrap.<br/>
