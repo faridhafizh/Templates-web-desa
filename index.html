@@ -23,6 +23,9 @@
 
     <!-- Custom styles for this template -->
     <link href="css/agency.min.css" rel="stylesheet">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body id="page-top">
     <!-- Navigation -->
@@ -64,7 +67,7 @@
     </header>
 
     <!-- Sejarah Desa Pagar Besi -->
-    <section id="about">
+    <section id="about" data-aos="fade-up">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -103,7 +106,7 @@
     </section>
 
     <!-- Profil Desa Pagar Besi -->
-    <section class="bg-light" id="portfolio">
+    <section class="bg-light" id="portfolio" data-aos="fade-up">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -159,7 +162,7 @@
     </section>
 
     <!-- Lembaga Desa -->
-    <section id="services">
+    <section id="services" data-aos="fade-up">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -213,8 +216,56 @@
       </div>
     </section>
 
+    <!-- Statistik Desa -->
+    <section class="bg-light" id="statistics" data-aos="fade-up">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Statistik Desa</h2>
+            <h3 class="section-subheading text-muted">Data kependudukan dan wilayah Desa Pagar Besi.</h3>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-3 col-sm-6">
+            <h2 class="counter" data-target="1500">0</h2>
+            <p class="text-muted">Penduduk</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <h2 class="counter" data-target="350">0</h2>
+            <p class="text-muted">Kepala Keluarga</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <h2 class="counter" data-target="1700">0</h2>
+            <p class="text-muted">Luas Wilayah (Ha)</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <h2 class="counter" data-target="8">0</h2>
+            <p class="text-muted">RT / Dusun</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Peta Lokasi -->
+    <section id="map" data-aos="fade-up">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Peta Lokasi</h2>
+            <h3 class="section-subheading text-muted">Lokasi geografis Desa Pagar Besi.</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- Google Maps iframe (Using Merigi Sakti roughly as placeholder if specific isn't available) -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127606.01258688461!2d102.3926052309736!3d-3.690184423772877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e36b8565dafc2eb%3A0xc66c1b3336f33d7b!2sMerigi%20Sakti%2C%20Kabupaten%20Bengkulu%20Tengah%2C%20Bengkulu!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="450" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Kontak -->
-    <section id="contact">
+    <section class="bg-light" id="contact" data-aos="fade-up">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -393,5 +444,46 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      // Counter animation logic
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200; // The lower the slower
+
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+
+          const inc = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        // Initialize observer to only animate when in view
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting){
+               updateCount();
+               observer.unobserve(counter);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        observer.observe(counter);
+      });
+    </script>
   </body>
 </html>
